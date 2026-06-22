@@ -39,13 +39,13 @@ publish_rid() {
   local rid="$1"
   local out="$ROOT/dist/$rid"
 
-  echo "Publishing self-contained build for $rid -> $out"
+  echo "Publishing self-contained single-file build for $rid -> $out"
   dotnet publish "$PROJECT" \
     -c "$CONFIG" \
     -r "$rid" \
     --self-contained true \
-    -p:PublishSingleFile=false \
-    -p:IncludeNativeLibrariesForSelfExtract=false \
+    -p:PublishSingleFile=true \
+    -p:IncludeNativeLibrariesForSelfExtract=true \
     -o "$out"
 
   echo

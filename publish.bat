@@ -10,13 +10,13 @@ if not "%~1"=="" set "CONFIG=%~1"
 set "RID=win-x64"
 set "OUT=%~dp0dist\%RID%"
 
-echo Publishing self-contained build for %RID% -^> %OUT%
+echo Publishing self-contained single-file build for %RID% -^> %OUT%
 "%DOTNET%" publish "%~dp0Server\DfoServer\DfoServer.csproj" ^
   -c %CONFIG% ^
   -r %RID% ^
   --self-contained true ^
-  -p:PublishSingleFile=false ^
-  -p:IncludeNativeLibrariesForSelfExtract=false ^
+  -p:PublishSingleFile=true ^
+  -p:IncludeNativeLibrariesForSelfExtract=true ^
   -o "%OUT%"
 if errorlevel 1 goto failed
 
